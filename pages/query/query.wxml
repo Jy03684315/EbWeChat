@@ -1,0 +1,15 @@
+<!--pages/query/query.wxml-->
+<view class="page-body">
+  <image class="image" src="../../image/logo.png"/>
+  <image class="image" src="../../image/ship.png"/>
+  <form bindsubmit="onSearch">
+  <view class="page-section">
+    <input class="weui-input" name='pol' placeholder="起运港"/>
+  </view>
+  <view class="page-section">
+    <input class="weui-input" name='pod' placeholder="目的港"/>
+  </view>
+  <button class='weui-button' formType="submit" plain style="color: #FFFFFF;background-color: #0099FF;border-color: #0099FF;">查询</button>
+  </form>
+  <button bindtap="onRet" class='weui-button' plain style="color: #FFFFFF;background-color: #0099FF;border-color: #0099FF;">返回</button>
+</view>

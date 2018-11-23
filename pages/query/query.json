@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "在线运价查询",
+  "usingComponents": {
+    "i-input": "../../dist/input/index",
+    "i-steps": "../../dist/steps/index",
+    "i-step": "../../dist/step/index",
+    "i-button": "../../dist/button/index",
+    "i-panel": "../../dist/panel/index"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/query/query",
+    "pages/display/display",
+    "pages/orders/orders",
+    "pages/orderDetail/orderDetail"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#0066FF",
+    "navigationBarTitleText": "EB",
+    "navigationBarTextStyle":"white"
+  }
+  ,"tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#0066FF",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/query/query",
+        "iconPath": "image/match0.png",
+        "selectedIconPath": "image/match1.png",
+        "text": "在线运价查询"
+      },
+      {
+        "pagePath": "pages/orders/orders",
+        "iconPath": "image/main0.png",
+        "selectedIconPath": "image/main1.png",
+        "text": "在线订单跟踪"
+      }
+    ]
+  }
+}

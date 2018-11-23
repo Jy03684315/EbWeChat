@@ -1,0 +1,81 @@
+<view class="one-tag">
+  <i-input value="{{ orderNo }}" title="订单号:" disabled />
+  <i-input value="{{pol}}" title="起运港:" disabled />
+  <i-input value="{{pod}}" title="目的港:" disabled />
+  <i-input value="{{date}}" title="船期:" disabled />
+</view>
+    <i-steps current="{{current}}" direction="vertical">
+        <i-step>
+            <view slot="title">
+              <!-- 订舱 -->
+              {{ORDER}}
+            </view>
+            <view slot="content">
+              <!-- (时间) -->
+              {{ORDERtime}}
+            </view>
+        </i-step>
+        <i-step>
+            <view slot="title">
+              <!-- 货物入库 -->
+              {{EX_LOAD_IN_HOUSE}}
+            </view>
+            <view slot="content">
+              (时间)
+            </view>
+        </i-step>
+        <i-step>
+            <view slot="title">
+              <!-- 报关放行 -->
+              {{CUSTOM_DECLARATION}}
+            </view>
+            <view slot="content">
+              (时间)
+            </view>
+        </i-step>
+        <i-step>
+            <view slot="title">
+              <!-- 提单确认 -->
+              {{EX_HBL}}
+            </view>
+            <view slot="content">
+              (时间)
+            </view>
+        </i-step>
+        <i-step>
+            <view slot="title">
+              <!-- 开航 -->
+              {{SAIL}}
+            </view>
+            <view slot="content">
+              (时间)
+            </view>
+        </i-step>
+        <i-step>
+            <view slot="title">
+              <!-- 费用确认 -->
+              {{FEE}}
+            </view>
+            <view slot="content">
+              (时间)
+            </view>
+        </i-step>
+        <i-step>
+            <view slot="title">
+              <!-- 提单签发 -->
+              {{EX_HBL_ISSUE}}
+            </view>
+            <view slot="content">
+              (时间)
+            </view>
+        </i-step>
+        <i-step>
+            <view slot="title">
+              <!-- 订单完结 -->
+              {{LCL_STATUS}}
+            </view>
+            <view slot="content">
+              (时间)
+            </view>
+        </i-step>
+    </i-steps>

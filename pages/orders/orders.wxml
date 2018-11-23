@@ -1,0 +1,31 @@
+<view class="page-body">
+  <image class="image" src="../../image/logo.png"/>
+  <image class="image" src="../../image/ship.png"/>
+  <view class="page-section">
+    <form bindsubmit="onSearch">
+      <view class="page-section">
+        <input class="weui-input" name='orderNo' placeholder="订单号"/>
+      </view>
+      <button class='weui-button' formType="submit" type="primary" style="color: #FFFFFF;background-color: #0099FF;border-color: #0099FF;">查询</button>
+    </form>
+  </view>
+<view class="table">
+  <view class="tr bg-w">
+    <view class="th">订单号</view>
+    <view class="th">船期</view>
+    <view class="th">起运港</view>
+    <view class="th">目的港</view>
+    <view class="th">最新动态</view>
+  </view>
+  <view class="spin-article">
+  <view class="tr bg-g" wx:for="{{queryList}}" wx:key="{{item.orderNo}}" bindtap='orderDetail' data-name='{{item.orderNo}}'>
+    <view class='td'> {{item.orderNo}} </view>
+    <view class="td"> {{item.voyageNo}} </view>
+    <view class="td"> {{item.polName}} </view>
+    <view class="td"> {{item.podName}} </view>
+    <view class="td"> {{item.status}} </view>
+  </view>
+  <i-spin size="large" fix wx:if="{{loading}}"></i-spin>
+  </view>
+</view>
+</view>
