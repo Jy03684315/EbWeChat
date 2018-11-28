@@ -26,7 +26,7 @@ Page({
     console.log(options.orderNo)
     var that = this;
     wx.request({
-      url: 'http://localhost:8087/LCL-SERVER/booking/detail/listBizTrace',
+      url: 'http://localhost:8087/LCL-SERVER/public/wechat/listBizTrace',
       header: {
         'content-type': 'application/json'
       },

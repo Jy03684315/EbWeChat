@@ -30,10 +30,9 @@ App({
                 js_code: res.code,
                 appid: 'wxab6bfe32b4372a45',
                 secret: 'ef7a4a07eb6d92a83ea433c232dc1498',
-                grant_type:authorization_code
+                grant_type:'authorization_code'
               },
               method: 'GET', 
-              // header: {}, 
               success: function (res) {
                 console.log(res)
                 var obj = {};

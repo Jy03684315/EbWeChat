@@ -19,10 +19,12 @@ Page({
     this.data.pol = options.pol;
     this.data.pod = options.pod;
     var that = this;
+    console.log(wx.getStorageSync('user').openid)
     wx.request({
-      url: 'http://localhost:8087/LCL-SERVER/tariff/queryOvTariff',
+      url: 'http://localhost:8087/LCL-SERVER/public/wechat/queryOvTariff',
       header: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'openid': wx.getStorageSync('user').openid
       },
       data: {
         pol: options.pol,
@@ -97,7 +99,7 @@ Page({
       }
     )
     wx.request({
-      url: 'http://localhost:8087/LCL-SERVER/tariff/queryOvTariff',
+      url: 'http://localhost:8087/LCL-SERVER/public/wechat/queryOvTariff',
       header: {
         'content-type': 'application/json'
       },

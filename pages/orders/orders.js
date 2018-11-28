@@ -14,7 +14,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     wx.request({
-      url: 'http://localhost:8087/LCL-SERVER/booking/listHistory',
+      url: 'http://localhost:8087/LCL-SERVER/public/wechat/listHistory',
       header: {
         'content-type': 'application/json'
       },
@@ -90,7 +90,7 @@ Page({
       }
     )
     wx.request({
-      url: 'http://localhost:8087/LCL-SERVER/booking/listHistory',
+      url: 'http://localhost:8087/LCL-SERVER/public/wechat/listHistory',
       header: {
         'content-type': 'application/json'
       },
