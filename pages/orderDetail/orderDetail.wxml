@@ -4,78 +4,17 @@
   <i-input value="{{pod}}" title="目的港:" disabled />
   <i-input value="{{date}}" title="船期:" disabled />
 </view>
-    <i-steps current="{{current}}" direction="vertical">
-        <i-step>
-            <view slot="title">
-              <!-- 订舱 -->
-              {{ORDER}}
-            </view>
-            <view slot="content">
-              <!-- (时间) -->
-              {{ORDERtime}}
-            </view>
-        </i-step>
-        <i-step>
-            <view slot="title">
-              <!-- 货物入库 -->
-              {{EX_LOAD_IN_HOUSE}}
-            </view>
-            <view slot="content">
-              (时间)
-            </view>
-        </i-step>
-        <i-step>
-            <view slot="title">
-              <!-- 报关放行 -->
-              {{CUSTOM_DECLARATION}}
-            </view>
-            <view slot="content">
-              (时间)
-            </view>
-        </i-step>
-        <i-step>
-            <view slot="title">
-              <!-- 提单确认 -->
-              {{EX_HBL}}
-            </view>
-            <view slot="content">
-              (时间)
-            </view>
-        </i-step>
-        <i-step>
-            <view slot="title">
-              <!-- 开航 -->
-              {{SAIL}}
-            </view>
-            <view slot="content">
-              (时间)
-            </view>
-        </i-step>
-        <i-step>
-            <view slot="title">
-              <!-- 费用确认 -->
-              {{FEE}}
-            </view>
-            <view slot="content">
-              (时间)
-            </view>
-        </i-step>
-        <i-step>
-            <view slot="title">
-              <!-- 提单签发 -->
-              {{EX_HBL_ISSUE}}
-            </view>
-            <view slot="content">
-              (时间)
-            </view>
-        </i-step>
-        <i-step>
-            <view slot="title">
-              <!-- 订单完结 -->
-              {{LCL_STATUS}}
-            </view>
-            <view slot="content">
-              (时间)
-            </view>
-        </i-step>
-    </i-steps>
+<i-steps current="{{current}}" direction="vertical">
+  <view wx:for="{{queryList}}" wx:key="{{item.seqNum}}">
+    <i-step>
+      <view slot="title">
+        <!-- 订舱 -->
+        {{item.status}}
+      </view>
+      <view slot="content">
+        <!-- (时间) -->
+        {{item.upldateDt}}
+      </view>
+    </i-step>
+  </view>
+</i-steps>

@@ -5,8 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    datesFrom: '2000-01-01',
-    datesTo: '2000-01-01',
+    datesFrom: '',
+    datesTo: '',
     pol:'',
     pod:'',
     loading:true
@@ -16,12 +16,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var timestamp = Date.parse(new Date());
+    timestamp = timestamp / 1000;
+    var n = timestamp * 1000;
+    var date = new Date(n);
+    var Y = date.getFullYear();
+    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
+    var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+    this.setData(
+      {
+        datesFrom: Y + '-' + M + '-' + D
+      }
+    )
     this.data.pol = options.pol;
     this.data.pod = options.pod;
     var that = this;
     console.log(wx.getStorageSync('user').openid)
     wx.request({
-      url: 'http://localhost:8087/LCL-SERVER/public/wechat/queryOvTariff',
+      url: 'https://ebpp.coscon.com/LCL-SERVER/public/wechat/queryOvTariff',
       header: {
         'content-type': 'application/json',
         'openid': wx.getStorageSync('user').openid
@@ -99,7 +111,7 @@ Page({
       }
     )
     wx.request({
-      url: 'http://localhost:8087/LCL-SERVER/public/wechat/queryOvTariff',
+      url: 'https://ebpp.coscon.com/LCL-SERVER/public/wechat/queryOvTariff',
       header: {
         'content-type': 'application/json'
       },
@@ -129,5 +141,13 @@ Page({
     this.setData({
       datesTo: e.detail.value
     })
+  },
+  removeTime:function(){
+    this.setData(
+      {
+        datesFrom: '',
+        datesTo: ''
+      }
+    )
   }
 })

@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/index/index",
     "pages/query/query",
+    "pages/index/index",
     "pages/display/display",
     "pages/orders/orders",
     "pages/orderDetail/orderDetail"
@@ -20,15 +20,21 @@
     "list": [
       {
         "pagePath": "pages/query/query",
-        "iconPath": "image/match0.png",
-        "selectedIconPath": "image/match1.png",
+        "iconPath": "image/freight0.png",
+        "selectedIconPath": "image/freight1.png",
         "text": "在线运价查询"
       },
       {
         "pagePath": "pages/orders/orders",
-        "iconPath": "image/main0.png",
-        "selectedIconPath": "image/main1.png",
+        "iconPath": "image/order0.png",
+        "selectedIconPath": "image/order1.png",
         "text": "在线订单跟踪"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "image/user0.png",
+        "selectedIconPath": "image/user1.png",
+        "text": "用户信息"
       }
     ]
   }

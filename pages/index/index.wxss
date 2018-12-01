@@ -3,6 +3,9 @@
   
   width: 900rpx;
 }
+.page-section{
+  margin-bottom: 20rpx;
+}
 .page-body-info {
   padding-bottom: 0;
   height: 230px;
@@ -17,7 +20,7 @@
   font-size: 38rpx;
 }
 .weui-button{
-  margin: 10rpx 0 10rpx 20rpx;
+  margin: 30rpx 0 30rpx 80rpx;
   color: #FFFFFF;
   background-color: #0099FF;
   border-color: #0099FF;
@@ -26,4 +29,23 @@
   border-radius: 30px;
   font-size:36rpx;
   line-height:50px;
+}
+.weui-input {
+  width: 100%;
+  height: 2.58823529em;
+  min-height: 2.58823529em;
+  line-height: 2.58823529em;
+  border: 1rpx solid #D9D9D9;
+}
+.welcome{
+  margin: 30rpx 0 30rpx 100rpx;
+}
+.userinfo-nickname{
+  text-shadow:rgb(2, 89, 240) 0 0 20px;
+  color:white;
+  font-size:20px
+}
+.msg{
+  color: red;
+  text-align:center;
 }

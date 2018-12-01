@@ -8,25 +8,17 @@ Page({
     orderNo:'',
     pod:'',
     pol:'',
-    voyageNo:'',
-    ORDER:'',
-    EX_LOAD_IN_HOUSE:'',
-    CUSTOM_DECLARATION:'',
-    EX_HBL:'',
-    SAIL:'',
-    FEE:'',
-    EX_HBL_ISSUE:'',
-    LCL_STATUS:''
+    queryList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.orderNo)
+    console.log(options)
     var that = this;
     wx.request({
-      url: 'http://localhost:8087/LCL-SERVER/public/wechat/listBizTrace',
+      url: 'https://ebpp.coscon.com/LCL-SERVER/public/wechat/listBizTrace',
       header: {
         'content-type': 'application/json'
       },
@@ -36,19 +28,18 @@ Page({
       success: function (res) {
         console.log(res.data.content);
         var queryList = res.data.content;
+        var current=0;
+        for(var i=0;i<queryList.length;i++){
+          if (!queryList[i].createDt){
+            current=i-1;
+            break;
+          }
+        }
         that.setData(
           {
             orderNo: options.orderNo,
-            ORDER: queryList[0].status,
-            ORDERtime: queryList[0].upldateDt,
-            EX_LOAD_IN_HOUSE: queryList[1].status,
-            CUSTOM_DECLARATION: queryList[2].status,
-            EX_HBL: queryList[3].status,
-            SAIL: queryList[4].status,
-            FEE: queryList[5].status,
-            EX_HBL_ISSUE: queryList[6].status,
-            LCL_STATUS: queryList[7].status,
-            current: 4
+            queryList: queryList,
+            current: current
           }
         )
       }

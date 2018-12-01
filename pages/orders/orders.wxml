@@ -17,6 +17,7 @@
     <view class="th">目的港</view>
     <view class="th">最新动态</view>
   </view>
+  <scroll-view scroll-x="true" scroll-y="true" bindscroll="scroll" style="width: 100%">
   <view class="spin-article">
   <view class="tr bg-g" wx:for="{{queryList}}" wx:key="{{item.orderNo}}" bindtap='orderDetail' data-name='{{item.orderNo}}'>
     <view class='td'> {{item.orderNo}} </view>
@@ -27,5 +28,6 @@
   </view>
   <i-spin size="large" fix wx:if="{{loading}}"></i-spin>
   </view>
+  </scroll-view>
 </view>
 </view>

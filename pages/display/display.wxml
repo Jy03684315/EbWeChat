@@ -23,6 +23,7 @@
     </view>
   </view>
   <button class='weui-button' formType="submit" type="primary" style="color: #FFFFFF;background-color: #0099FF;border-color: #0099FF;">查询</button>
+  <button class='weui-button' bindtap='removeTime' type="primary" style="color: #FFFFFF;background-color: #0099FF;border-color: #0099FF;">清空</button>
   </form>
   <view class="table">
     <view class="tr bg-w">

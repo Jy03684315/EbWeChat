@@ -4,18 +4,17 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
+    msg: '',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
-  },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    bind:true,
+    unbind: true,
+    name:'',
+    pwd:''
   },
   onLoad: function () {
+    var that=this;
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -42,6 +41,34 @@ Page({
         }
       })
     }
+    wx.request({
+      url: 'http://localhost:8087/LCL-SERVER/public/wechat/isBind',
+      header: {
+        'content-type': 'application/json',
+        'openid': wx.getStorageSync('user').openid
+      },
+      method: 'post',
+      success: function (res) {
+        console.log(res);
+        if(res.data==false){
+          console.log('未绑定')
+          that.setData(
+            {
+              unbind: false,
+              bind: true
+            }
+          )
+        }else{
+          console.log('已绑定')
+          that.setData(
+            {
+              unbind: true,
+              bind: false
+            }
+          )
+        }
+      }
+    })
   },
   getUserInfo: function(e) {
     console.log(e)
@@ -51,9 +78,83 @@ Page({
       hasUserInfo: true
     })
   },
-  onClk: function (options) {
-    wx.switchTab({
-      url: '../query/query'
+  login: function (e) {
+    // wx.showModal({
+    //   content: '确认绑定EB账号？',
+    //   confirmText: '确定',
+    //   cancelText: '取消',
+    //   success: function (res) {
+    //     if(res.cancel){
+
+    //     }else{
+
+    //     }
+    //   },
+    // })
+    var that = this;
+    var name = e.detail.value.name;
+    var pwd = e.detail.value.pwd;
+    var utilMd5 = require('../../utils/md5.js');
+    var password = utilMd5.hexMD5(pwd); 
+    wx.request({
+      url: 'http://localhost:8087/LCL-SERVER/public/wechat/bind',
+      header: {
+        'content-type': 'application/json',
+        'openid': wx.getStorageSync('user').openid
+      },
+      method:'post',
+      data: 
+      JSON.stringify(
+        { // 接口入参
+          username: name,
+          password: password,
+          client_id: 'm1',
+          client_secret: 's1',
+          grant_type: 'password',
+          scope: 'read',
+          f1: 'true', //  标记本次请求是否对密码进行MD5加密
+          captcha: '2b2b' // 验证码
+        }
+      ),
+      success: function (res) {
+        console.log(res);
+        if(res.data.code=='500'){
+          that.setData(
+            {
+              msg: res.data.message,
+              name:'',
+              pwd:''
+            }
+          )
+        }else{
+          that.setData(
+            {
+              unbind: true,
+              bind: false,
+              name: '',
+              pwd: '',
+              msg:''
+            }
+          )
+        }
+      }
     })
   },
+  unbind(){
+    var that=this;
+    wx.showActionSheet({
+      itemList: ['确认解除'],
+      success(e) {
+        console.log(e.tapIndex)
+        if (e.tapIndex==0){
+          that.setData(
+            {
+              unbind: false,
+              bind: true
+            }
+          )
+        }
+      }
+    })
+  }
 })

@@ -17,10 +17,10 @@ App({
           if (res.code) {
             wx.getUserInfo({
               success: function (res) {
-                var objz = {};
-                objz.avatarUrl = res.userInfo.avatarUrl;
-                objz.nickName = res.userInfo.nickName;
-                wx.setStorageSync('userInfo', objz);
+                // var objz = {};
+                // objz.avatarUrl = res.userInfo.avatarUrl;
+                // objz.nickName = res.userInfo.nickName;
+                wx.setStorageSync('userInfo', res.userInfo);
               }
             });
             console.log(res.code)
@@ -34,7 +34,6 @@ App({
               },
               method: 'GET', 
               success: function (res) {
-                console.log(res)
                 var obj = {};
                 obj.openid = res.data.openid;
                 obj.expires_in = Date.now() + res.data.expires_in;

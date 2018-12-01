@@ -1,11 +1,31 @@
 <!--index.wxml-->
 <view class="page-body">
   <image class="image" src="../../image/first.png"/>
-
-<view class="container">
-  <text class="userinfo-nickname">欢迎</text>
-  <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
-  <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  <button class='weui-button' bindtap='onClk' type="primary" style="color: #FFFFFF;background-color: #0099FF;border-color: #0099FF;">EB登录</button>
+  <view class="welcome">
+    <text class="userinfo-nickname">中远海运货运拼箱电子商务平台</text>
+  </view>
+  <view class='unbind' hidden='{{unbind}}'>
+    <form bindsubmit="login">
+    <view class="page-section">
+      <input class="weui-input" name='name' value="{{name}}" placeholder="用户名"/>
+    </view>
+    <view class="page-section">
+      <input class="weui-input" name='pwd' value="{{pwd}}" password placeholder="密码"/>
+    </view>
+    <view class='msg'>{{msg}}</view>
+      <button class='weui-button' formType="submit" type="primary"  style="color: #FFFFFF;background-color: #0099FF;border-color:#0099FF;">绑定EB账号登录</button>
+    </form>
+  </view>
+  <view class='bind' hidden='{{bind}}'>
+    <view style='text-align:center;'>
+      <view>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+      </view>
+      <view>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </view>
+      <button class='weui-button' bindtap='unbind' type="primary"  style="color:#FFFFFF;background-color: #0099FF;border-color:#0099FF;">解除绑定</button>
+    </view>
   </view>
 </view>
+ 

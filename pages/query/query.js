@@ -63,11 +63,6 @@ Page({
   onShareAppMessage: function () {
 
   },
-  onRet: function (options) {
-    wx.redirectTo({
-      url: '../index/index'
-    })
-  },
   onSearch: function (e) {
     console.log(e)
     var pol = e.detail.value.pol;

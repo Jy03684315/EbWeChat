@@ -11,5 +11,4 @@
   </view>
   <button class='weui-button' formType="submit" plain style="color: #FFFFFF;background-color: #0099FF;border-color: #0099FF;">查询</button>
   </form>
-  <button bindtap="onRet" class='weui-button' plain style="color: #FFFFFF;background-color: #0099FF;border-color: #0099FF;">返回</button>
 </view>
