@@ -1,4 +1,5 @@
 // pages/orderDetail/orderDetail.js
+const app = getApp()
 Page({
 
   /**
@@ -18,7 +19,7 @@ Page({
     console.log(options)
     var that = this;
     wx.request({
-      url: 'https://ebpp.coscon.com/LCL-SERVER/public/wechat/listBizTrace',
+      url: app.globalData.URL +'public/wechat/listBizTrace',
       header: {
         'content-type': 'application/json'
       },

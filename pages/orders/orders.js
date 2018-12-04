@@ -1,4 +1,5 @@
 // pages/orders/orders.js
+const app = getApp()
 Page({
 
   /**
@@ -14,7 +15,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     wx.request({
-      url: 'https://ebpp.coscon.com/LCL-SERVER/public/wechat/listHistory',
+      url: app.globalData.URL +'public/wechat/listHistory',
       header: {
         'content-type': 'application/json'
       },
@@ -89,24 +90,43 @@ Page({
         queryList: []
       }
     )
-    wx.request({
-      url: 'https://ebpp.coscon.com/LCL-SERVER/public/wechat/listHistory',
-      header: {
-        'content-type': 'application/json'
-      },
-      data: {
-        orderNo: orderNo
-      },
-      success: function (res) {
-        console.log(res.data.content.orderList)
-        that.setData(
-          {
-            loading: false,
-            queryList: res.data.content.orderList
-          }
-        )
-      }
-    })
+    if (orderNo==''){
+      wx.request({
+        url: app.globalData.URL +'public/wechat/listHistory',
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          console.log(res.data.content.orderList)
+          that.setData(
+            {
+              loading: false,
+              queryList: res.data.content.orderList
+            }
+          )
+        }
+      })
+    }else{
+      wx.request({
+        url: app.globalData.LOCALURL +'public/wechat/orderByOrderNo',
+        method: 'get',
+        header: {
+          'content-type': 'application/json'
+        },
+        data: {
+          orderNo: orderNo
+        },
+        success: function (res) {
+          console.log(res)
+          that.setData(
+            {
+              loading: false,
+              queryList: res.data.content
+            }
+          )
+        }
+      })
+    }
   },
 
   orderDetail:function(e){

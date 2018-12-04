@@ -67,6 +67,8 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    LOCALURL:'http://localhost:8087/LCL-SERVER/',
+    URL: 'https://ebpp.coscon.com/LCL-SERVER/'
   }
 })

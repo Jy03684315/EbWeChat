@@ -42,7 +42,7 @@ Page({
       })
     }
     wx.request({
-      url: 'http://localhost:8087/LCL-SERVER/public/wechat/isBind',
+      url: app.globalData.LOCALURL+'public/wechat/isBind',
       header: {
         'content-type': 'application/json',
         'openid': wx.getStorageSync('user').openid
@@ -50,7 +50,7 @@ Page({
       method: 'post',
       success: function (res) {
         console.log(res);
-        if(res.data==false){
+        if(!res.data.content){
           console.log('未绑定')
           that.setData(
             {
@@ -59,7 +59,8 @@ Page({
             }
           )
         }else{
-          console.log('已绑定')
+          var ebUser = res.data.content;
+          console.log(ebUser)
           that.setData(
             {
               unbind: true,
@@ -97,10 +98,17 @@ Page({
     var utilMd5 = require('../../utils/md5.js');
     var password = utilMd5.hexMD5(pwd); 
     wx.request({
-      url: 'http://localhost:8087/LCL-SERVER/public/wechat/bind',
+      url: app.globalData.LOCALURL + 'public/wechat/bind',
       header: {
         'content-type': 'application/json',
-        'openid': wx.getStorageSync('user').openid
+        'openid': wx.getStorageSync('user').openid,
+        'nickName': wx.getStorageSync('userInfo').nickName,
+        'avatarUrl': wx.getStorageSync('userInfo').avatarUrl,
+        'city': wx.getStorageSync('userInfo').city,
+        'country': wx.getStorageSync('userInfo').country,
+        'gender': wx.getStorageSync('userInfo').gender,
+        'language': wx.getStorageSync('userInfo').language,
+        'province': wx.getStorageSync('userInfo').province
       },
       method:'post',
       data: 
@@ -147,12 +155,23 @@ Page({
       success(e) {
         console.log(e.tapIndex)
         if (e.tapIndex==0){
-          that.setData(
-            {
-              unbind: false,
-              bind: true
+          wx.request({
+            url: app.globalData.LOCALURL+'public/wechat/unbind',
+            header: {
+              'content-type': 'application/json',
+              'openid': wx.getStorageSync('user').openid
+            },
+            method: 'post',
+            success: function (res) {
+              console.log(res);
+              that.setData(
+                {
+                  unbind: false,
+                  bind: true
+                }
+              )
             }
-          )
+          })
         }
       }
     })

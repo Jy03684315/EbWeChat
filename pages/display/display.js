@@ -1,4 +1,5 @@
 // pages/display/display.js
+const app = getApp()
 Page({
 
   /**
@@ -33,7 +34,7 @@ Page({
     var that = this;
     console.log(wx.getStorageSync('user').openid)
     wx.request({
-      url: 'https://ebpp.coscon.com/LCL-SERVER/public/wechat/queryOvTariff',
+      url: app.globalData.URL +'public/wechat/queryOvTariff',
       header: {
         'content-type': 'application/json',
         'openid': wx.getStorageSync('user').openid
@@ -111,7 +112,7 @@ Page({
       }
     )
     wx.request({
-      url: 'https://ebpp.coscon.com/LCL-SERVER/public/wechat/queryOvTariff',
+      url: app.globalData.URL +'public/wechat/queryOvTariff',
       header: {
         'content-type': 'application/json'
       },
