@@ -42,7 +42,7 @@ Page({
       })
     }
     wx.request({
-      url: app.globalData.LOCALURL+'public/wechat/isBind',
+      url: app.globalData.URL+'public/wechat/isBind',
       header: {
         'content-type': 'application/json',
         'openid': wx.getStorageSync('user').openid
@@ -50,7 +50,7 @@ Page({
       method: 'post',
       success: function (res) {
         console.log(res);
-        if(!res.data.content){
+        if(!res.data){
           console.log('未绑定')
           that.setData(
             {
@@ -59,8 +59,6 @@ Page({
             }
           )
         }else{
-          var ebUser = res.data.content;
-          console.log(ebUser)
           that.setData(
             {
               unbind: true,
@@ -98,7 +96,7 @@ Page({
     var utilMd5 = require('../../utils/md5.js');
     var password = utilMd5.hexMD5(pwd); 
     wx.request({
-      url: app.globalData.LOCALURL + 'public/wechat/bind',
+      url: app.globalData.URL + 'public/wechat/bind',
       header: {
         'content-type': 'application/json',
         'openid': wx.getStorageSync('user').openid,
@@ -156,7 +154,7 @@ Page({
         console.log(e.tapIndex)
         if (e.tapIndex==0){
           wx.request({
-            url: app.globalData.LOCALURL+'public/wechat/unbind',
+            url: app.globalData.URL+'public/wechat/unbind',
             header: {
               'content-type': 'application/json',
               'openid': wx.getStorageSync('user').openid

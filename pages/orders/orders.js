@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    loading: true
+    loading: true,
+    orderNo:''
   },
 
   /**
@@ -17,16 +18,26 @@ Page({
     wx.request({
       url: app.globalData.URL +'public/wechat/listHistory',
       header: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'openid': wx.getStorageSync('user').openid
       },
       success: function (res) {
-        console.log(res.data.content.orderList)
-        that.setData(
-          {
-            loading: false,
-            queryList: res.data.content.orderList
-          }
-        )
+        console.log(res)
+        if(!res.data.content){
+          that.setData(
+            {
+              loading: false,
+              queryList: []
+            }
+          )
+        }else{
+          that.setData(
+            {
+              loading: false,
+              queryList: res.data.content.orderList
+            }
+          )
+        }
       }
     })
   },
@@ -42,7 +53,33 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    // var that = this;
+    // that.data.orderNo='';
+    // wx.request({
+    //   url: app.globalData.URL + 'public/wechat/listHistory',
+    //   header: {
+    //     'content-type': 'application/json',
+    //     'openid': wx.getStorageSync('user').openid
+    //   },
+    //   success: function (res) {
+    //     console.log(res)
+    //     if (!res.data.content) {
+    //       that.setData(
+    //         {
+    //           loading: false,
+    //           queryList: []
+    //         }
+    //       )
+    //     } else {
+    //       that.setData(
+    //         {
+    //           loading: false,
+    //           queryList: res.data.content.orderList
+    //         }
+    //       )
+    //     }
+    //   }
+    // })
   },
 
   /**
@@ -94,24 +131,35 @@ Page({
       wx.request({
         url: app.globalData.URL +'public/wechat/listHistory',
         header: {
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          'openid': wx.getStorageSync('user').openid
         },
         success: function (res) {
-          console.log(res.data.content.orderList)
-          that.setData(
-            {
-              loading: false,
-              queryList: res.data.content.orderList
-            }
-          )
+          console.log(res)
+          if (!res.data.content) {
+            that.setData(
+              {
+                loading: false,
+                queryList: []
+              }
+            )
+          } else {
+            that.setData(
+              {
+                loading: false,
+                queryList: res.data.content.orderList
+              }
+            )
+          }
         }
       })
     }else{
       wx.request({
-        url: app.globalData.LOCALURL +'public/wechat/orderByOrderNo',
+        url: app.globalData.URL +'public/wechat/orderByOrderNo',
         method: 'get',
         header: {
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          'openid': wx.getStorageSync('user').openid
         },
         data: {
           orderNo: orderNo
