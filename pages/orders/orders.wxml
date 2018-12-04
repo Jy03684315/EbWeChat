@@ -4,7 +4,7 @@
   <view class="page-section">
     <form bindsubmit="onSearch">
       <view class="page-section">
-        <input class="weui-input" name='orderNo' placeholder="订单号"/>
+        <input class="weui-input" name='orderNo' value='{{orderNo}}' placeholder="订单号"/>
       </view>
       <button class='weui-button' formType="submit" type="primary" style="color: #FFFFFF;background-color: #0099FF;border-color: #0099FF;">查询</button>
     </form>

@@ -7,39 +7,39 @@ Page({
    */
   data: {
     loading: true,
-    orderNo:''
+    orderNo:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    wx.request({
-      url: app.globalData.URL +'public/wechat/listHistory',
-      header: {
-        'content-type': 'application/json',
-        'openid': wx.getStorageSync('user').openid
-      },
-      success: function (res) {
-        console.log(res)
-        if(!res.data.content){
-          that.setData(
-            {
-              loading: false,
-              queryList: []
-            }
-          )
-        }else{
-          that.setData(
-            {
-              loading: false,
-              queryList: res.data.content.orderList
-            }
-          )
-        }
-      }
-    })
+    // var that = this;
+    // wx.request({
+    //   url: app.globalData.URL +'public/wechat/listHistory',
+    //   header: {
+    //     'content-type': 'application/json',
+    //     'openid': wx.getStorageSync('user').openid
+    //   },
+    //   success: function (res) {
+    //     console.log(res)
+    //     if(!res.data.content){
+    //       that.setData(
+    //         {
+    //           loading: false,
+    //           queryList: []
+    //         }
+    //       )
+    //     }else{
+    //       that.setData(
+    //         {
+    //           loading: false,
+    //           queryList: res.data.content.orderList
+    //         }
+    //       )
+    //     }
+    //   }
+    // })
   },
 
   /**
@@ -53,33 +53,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // var that = this;
-    // that.data.orderNo='';
-    // wx.request({
-    //   url: app.globalData.URL + 'public/wechat/listHistory',
-    //   header: {
-    //     'content-type': 'application/json',
-    //     'openid': wx.getStorageSync('user').openid
-    //   },
-    //   success: function (res) {
-    //     console.log(res)
-    //     if (!res.data.content) {
-    //       that.setData(
-    //         {
-    //           loading: false,
-    //           queryList: []
-    //         }
-    //       )
-    //     } else {
-    //       that.setData(
-    //         {
-    //           loading: false,
-    //           queryList: res.data.content.orderList
-    //         }
-    //       )
-    //     }
-    //   }
-    // })
+    this.setData({
+      orderNo: '',
+    })
+    var e = { detail: { value: { orderNo:{}}}};
+    e.detail.value.orderNo='';
+    this.onSearch(e)
   },
 
   /**
