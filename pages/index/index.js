@@ -41,8 +41,11 @@ Page({
         }
       })
     }
+  },
+  onShow: function () {
+    var that = this;
     wx.request({
-      url: app.globalData.URL+'public/wechat/isBind',
+      url: app.globalData.URL + 'public/wechat/isBind',
       header: {
         'content-type': 'application/json',
         'openid': wx.getStorageSync('user').openid
@@ -50,7 +53,7 @@ Page({
       method: 'post',
       success: function (res) {
         console.log(res);
-        if(!res.data){
+        if (!res.data) {
           console.log('未绑定')
           that.setData(
             {
@@ -58,7 +61,7 @@ Page({
               bind: true
             }
           )
-        }else{
+        } else {
           that.setData(
             {
               unbind: true,
