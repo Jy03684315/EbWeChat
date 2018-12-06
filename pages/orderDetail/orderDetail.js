@@ -9,6 +9,7 @@ Page({
     orderNo:'',
     pod:'',
     pol:'',
+    voyageNo:'',
     queryList:[]
   },
 
@@ -41,6 +42,27 @@ Page({
             orderNo: options.orderNo,
             queryList: queryList,
             current: current
+          }
+        )
+      }
+    });
+    wx.request({
+      url: app.globalData.URL + 'public/wechat/orderByOrderNo',
+      method: 'get',
+      header: {
+        'content-type': 'application/json',
+        'openid': wx.getStorageSync('user').openid
+      },
+      data: {
+        orderNo: options.orderNo
+      },
+      success: function (res) {
+        console.log(res)
+        that.setData(
+          {
+            pod: res.data.content[0].podName,
+            pol: res.data.content[0].polName,
+            voyageNo: res.data.content[0].voyageNo
           }
         )
       }
