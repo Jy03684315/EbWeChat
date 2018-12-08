@@ -130,7 +130,7 @@ Page({
         if(res.data.code!='0'){
           that.setData(
             {
-              msg: res.data.message,
+              msg: res.errMsg,
               name:'',
               pwd:''
             }
@@ -168,7 +168,7 @@ Page({
               if (res.data.code != '0') {
                 that.setData(
                   {
-                    msgUnbind: res.data.message
+                    msgUnbind: res.errMsg
                   }
                 )
               }else{
