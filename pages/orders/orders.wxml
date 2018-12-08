@@ -19,6 +19,9 @@
   </view>
   <scroll-view scroll-x="true" scroll-y="true" bindscroll="scroll" style="width: 100%">
   <view class="spin-article">
+  <view hidden='{{noQuery}}' class="tr bg-g">
+    <view class="td">暂无数据</view>
+  </view>
   <view class="tr bg-g" wx:for="{{queryList}}" wx:key="{{item.orderNo}}" bindtap='orderDetail' data-name='{{item.orderNo}}'>
     <view class='td'> {{item.orderNo}} </view>
     <view class="td"> {{item.voyageNo}} </view>

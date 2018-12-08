@@ -47,7 +47,7 @@ Page({
       success: function (res) {
         console.log(res.data.content.ovTariffList);
         var queryList = res.data.content.ovTariffList;
-        if (queryList.length==0){
+        if (queryList.length == 0){
           that.setData(
             {
               noQuery: false

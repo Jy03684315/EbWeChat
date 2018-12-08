@@ -127,7 +127,7 @@ Page({
       ),
       success: function (res) {
         console.log(res);
-        if(res.data.code=='500'){
+        if(res.data.code!='0'){
           that.setData(
             {
               msg: res.data.message,
@@ -165,12 +165,20 @@ Page({
             method: 'post',
             success: function (res) {
               console.log(res);
-              that.setData(
-                {
-                  unbind: false,
-                  bind: true
-                }
-              )
+              if (res.data.code != '0') {
+                that.setData(
+                  {
+                    msgUnbind: res.data.message
+                  }
+                )
+              }else{
+                that.setData(
+                  {
+                    unbind: false,
+                    bind: true
+                  }
+                )
+              }
             }
           })
         }

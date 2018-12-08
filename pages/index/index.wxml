@@ -25,6 +25,7 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
       </view>
       <button class='weui-button' bindtap='unbind' type="primary"  style="color:#FFFFFF;background-color: #0099FF;border-color:#0099FF;">解除绑定</button>
+      <view class='msg'>{{msgUnbind}}</view>
     </view>
   </view>
 </view>

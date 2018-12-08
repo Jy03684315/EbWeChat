@@ -8,6 +8,7 @@ Page({
   data: {
     loading: true,
     orderNo:'',
+    noQuery: true
   },
 
   /**
@@ -115,18 +116,20 @@ Page({
         },
         success: function (res) {
           console.log(res)
-          if (!res.data.content) {
+          if (res.data.content==null||res.data.content.length==0) {
             that.setData(
               {
                 loading: false,
-                queryList: []
+                queryList: [],
+                noQuery: false
               }
             )
           } else {
             that.setData(
               {
                 loading: false,
-                queryList: res.data.content.orderList
+                queryList: res.data.content.orderList,
+                noQuery: true
               }
             )
           }
@@ -145,10 +148,24 @@ Page({
         },
         success: function (res) {
           console.log(res)
+          var queryList = res.data.content;
+          if (queryList.length==0) {
+            that.setData(
+              {
+                noQuery: false
+              }
+            )
+          } else {
+            that.setData(
+              {
+                noQuery: true
+              }
+            )
+          }
           that.setData(
             {
               loading: false,
-              queryList: res.data.content
+              queryList: queryList
             }
           )
         }
