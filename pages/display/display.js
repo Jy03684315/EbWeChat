@@ -10,7 +10,8 @@ Page({
     datesTo: '',
     pol:'',
     pod:'',
-    loading:true
+    loading:true,
+    noQuery:true
   },
 
   /**
@@ -45,10 +46,24 @@ Page({
       },
       success: function (res) {
         console.log(res.data.content.ovTariffList);
+        var queryList = res.data.content.ovTariffList;
+        if (queryList.length==0){
+          that.setData(
+            {
+              noQuery: false
+            }
+          )
+        }else{
+          that.setData(
+            {
+              noQuery: true
+            }
+          )
+        }
         that.setData(
           {
             loading:false,
-            queryList: res.data.content.ovTariffList
+            queryList: queryList
           }
         )
       }
@@ -123,7 +138,21 @@ Page({
         endDate: this.data.datesTo
       },
       success: function (res) {
-        console.log(res.data.content.ovTariffList)
+        console.log(res.data.content.ovTariffList);
+        var queryList = res.data.content.ovTariffList;
+        if (queryList.length == 0) {
+          that.setData(
+            {
+              noQuery: false
+            }
+          )
+        } else {
+          that.setData(
+            {
+              noQuery: true
+            }
+          )
+        }
         that.setData(
           {
             loading: false,
