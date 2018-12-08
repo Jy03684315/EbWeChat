@@ -10,7 +10,9 @@ Page({
     pod:'',
     pol:'',
     voyageNo:'',
-    queryList:[]
+    queryList:[],
+    noQuery: true,
+    msg: ''
   },
 
   /**
@@ -31,19 +33,35 @@ Page({
         console.log(res.data.content);
         var queryList = res.data.content;
         var current=0;
-        for(var i=0;i<queryList.length;i++){
-          if (!queryList[i].createDt){
-            current=i-1;
-            break;
+        if (res.data.code != '0') {
+          that.setData(
+            {
+              noQuery: false,
+              msg: res.errMsg
+            }
+          )
+        } else if (res.data.content == null ||queryList.length == 0) {
+          that.setData(
+            {
+              noQuery: false,
+              msg: '暂无数据'
+            }
+          )
+        } else {
+          for (var i = 0; i < queryList.length; i++) {
+            if (!queryList[i].createDt) {
+              current = i - 1;
+              break;
+            }
           }
+          that.setData(
+            {
+              orderNo: options.orderNo,
+              queryList: queryList,
+              current: current
+            }
+          )
         }
-        that.setData(
-          {
-            orderNo: options.orderNo,
-            queryList: queryList,
-            current: current
-          }
-        )
       }
     });
     wx.request({

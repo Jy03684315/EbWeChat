@@ -36,7 +36,7 @@
     <scroll-view scroll-x="true" scroll-y="true" bindscroll="scroll" style="width: 100%">
     <view class="spin-article">
     <view hidden='{{noQuery}}' class="tr bg-g">
-      <view class="td">暂无数据</view>
+      <view class="td">{{msg}}</view>
     </view>
     <view class="tr bg-g" wx:for="{{queryList}}" wx:key="{{item.tariffId}}">
       <view class='td'> {{item.cbm}} </view>

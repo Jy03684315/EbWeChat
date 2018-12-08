@@ -1,14 +1,14 @@
 // pages/orders/orders.js
 const app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     loading: true,
     orderNo:'',
-    noQuery: true
+    noQuery: true,
+    msg: ''
   },
 
   /**
@@ -116,12 +116,20 @@ Page({
         },
         success: function (res) {
           console.log(res)
-          if (res.data.content==null||res.data.content.length==0) {
+          if (res.data.code != '0') {
+            that.setData(
+              {
+                noQuery: false,
+                msg: res.errMsg
+              }
+            )
+          }else if (res.data.content==null||res.data.content.length==0) {
             that.setData(
               {
                 loading: false,
                 queryList: [],
-                noQuery: false
+                noQuery: false,
+                msg: '暂无数据'
               }
             )
           } else {
@@ -149,10 +157,18 @@ Page({
         success: function (res) {
           console.log(res)
           var queryList = res.data.content;
-          if (queryList.length==0) {
+          if (res.data.code != '0') {
             that.setData(
               {
-                noQuery: false
+                noQuery: false,
+                msg: res.errMsg
+              }
+            )
+          } else if (queryList.length==0) {
+            that.setData(
+              {
+                noQuery: false,
+                msg: '暂无数据'
               }
             )
           } else {

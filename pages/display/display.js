@@ -11,7 +11,8 @@ Page({
     pol:'',
     pod:'',
     loading:true,
-    noQuery:true
+    noQuery:true,
+    msg:''
   },
 
   /**
@@ -45,12 +46,20 @@ Page({
         pod: options.pod
       },
       success: function (res) {
-        console.log(res.data.content.ovTariffList);
+        console.log(res);
         var queryList = res.data.content.ovTariffList;
-        if (queryList.length == 0){
+        if (res.data.code != '0'){
           that.setData(
             {
-              noQuery: false
+              noQuery: false,
+              msg:res.errMsg
+            }
+          )
+        } else if (queryList.length == 0){
+          that.setData(
+            {
+              noQuery: false,
+              msg: '暂无数据'
             }
           )
         }else{
@@ -138,15 +147,23 @@ Page({
         endDate: this.data.datesTo
       },
       success: function (res) {
-        console.log(res.data.content.ovTariffList);
+        console.log(res);
         var queryList = res.data.content.ovTariffList;
-        if (queryList.length == 0) {
+        if (res.data.code != '0') {
           that.setData(
             {
-              noQuery: false
+              noQuery: false,
+              msg: res.errMsg
             }
           )
-        } else {
+        } else if (queryList.length == 0) {
+          that.setData(
+            {
+              noQuery: false,
+              msg: '暂无数据'
+            }
+          )
+        }else {
           that.setData(
             {
               noQuery: true
