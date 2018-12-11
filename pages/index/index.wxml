@@ -5,16 +5,18 @@
     <text class="userinfo-nickname">中远海运货运拼箱电子商务平台</text>
   </view>
   <view class='unbind' hidden='{{unbind}}'>
-    <form bindsubmit="login">
+    <form bindsubmit="modal">
     <view class="page-section">
       <input class="weui-input" name='name' value="{{name}}" placeholder="用户名"/>
     </view>
     <view class="page-section">
       <input class="weui-input" name='pwd' value="{{pwd}}" password placeholder="密码"/>
     </view>
-    <view class='msg'>{{msg}}</view>
       <button class='weui-button' formType="submit" type="primary"  style="color: #FFFFFF;background-color: #0099FF;border-color:#0099FF;">绑定EB账号登录</button>
     </form>
+    <i-modal visible="{{ visible }}" bind:ok="login" bind:cancel="handleClose">
+    <view>是否确认绑定EB账号？</view>
+    </i-modal>
   </view>
   <view class='bind' hidden='{{bind}}'>
     <view style='text-align:center;'>
@@ -29,4 +31,5 @@
     </view>
   </view>
 </view>
+<i-message id="message" />
  

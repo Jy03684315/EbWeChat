@@ -1,17 +1,18 @@
-//index.js
-//获取应用实例
-const app = getApp()
+const app = getApp();
+const { $Message } = require('../../dist/base/index');
 
 Page({
   data: {
-    msg: '',
+    visible: false,
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     bind:true,
     unbind: true,
     name:'',
-    pwd:''
+    pwd:'',
+    bindName:'',
+    bindPwd:''
   },
   onLoad: function () {
     var that=this;
@@ -80,24 +81,26 @@ Page({
       hasUserInfo: true
     })
   },
-  login: function (e) {
-    // wx.showModal({
-    //   content: '确认绑定EB账号？',
-    //   confirmText: '确定',
-    //   cancelText: '取消',
-    //   success: function (res) {
-    //     if(res.cancel){
-
-    //     }else{
-
-    //     }
-    //   },
-    // })
-    var that = this;
+  handleClose() {
+    this.setData({
+      visible: false
+    });
+  },
+  modal: function (e) {
     var name = e.detail.value.name;
     var pwd = e.detail.value.pwd;
     var utilMd5 = require('../../utils/md5.js');
     var password = utilMd5.hexMD5(pwd); 
+    this.setData({
+      visible: true,
+      bindName: name,
+      bindPwd: password
+    });
+  },
+  login: function () {
+    var that = this;
+    var name = that.data.bindName;
+    var password = that.data.bindPwd;
     wx.request({
       url: app.globalData.URL + 'public/wechat/bind',
       header: {
@@ -128,14 +131,24 @@ Page({
       success: function (res) {
         console.log(res);
         if(res.data.code!='0'){
+          $Message({
+            content: res.data.message,
+            type: 'error'
+          });
           that.setData(
             {
-              msg: res.errMsg,
               name:'',
               pwd:''
             }
-          )
+          );
+          that.setData({
+            visible: false
+          });
         }else{
+          $Message({
+            content: '绑定成功！',
+            type: 'success'
+          });
           that.setData(
             {
               unbind: true,
@@ -144,7 +157,10 @@ Page({
               pwd: '',
               msg:''
             }
-          )
+          );
+          that.setData({
+            visible: false
+          });
         }
       }
     })
@@ -153,6 +169,7 @@ Page({
     var that=this;
     wx.showActionSheet({
       itemList: ['确认解除'],
+      itemColor: '#ed3f14',
       success(e) {
         console.log(e.tapIndex)
         if (e.tapIndex==0){
@@ -166,12 +183,20 @@ Page({
             success: function (res) {
               console.log(res);
               if (res.data.code != '0') {
+                $Message({
+                  content: '解除失败！',
+                  type: 'error'
+                });
                 that.setData(
                   {
                     msgUnbind: res.errMsg
                   }
                 )
               }else{
+                $Message({
+                  content: '解除成功！',
+                  type: 'success'
+                });
                 that.setData(
                   {
                     unbind: false,

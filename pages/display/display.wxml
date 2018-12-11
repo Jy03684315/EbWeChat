@@ -1,6 +1,4 @@
 <view class="page-body">
-  <image class="image" src="../../image/logo.png"/>
-  <image class="image" src="../../image/ship.png"/>
   <form bindsubmit="onSearch">
   <view class="weui-cell weui-cell_input">
     <view class="weui-cell__hd">
@@ -25,28 +23,26 @@
   <button class='weui-button' formType="submit" type="primary" style="color: #FFFFFF;background-color: #0099FF;border-color: #0099FF;">查询</button>
   <button class='weui-button' bindtap='removeTime' type="primary" style="color: #FFFFFF;background-color: #0099FF;border-color: #0099FF;">清空</button>
   </form>
-  <view class="table">
-    <view class="tr bg-w">
-      <view class="th">立方运价</view>
-      <view class="th">吨运价</view>
-      <view class="th">中转港</view>
-      <view class="th">船期</view>
-      <view class="th">航程</view>
-    </view>
-    <scroll-view scroll-x="true" scroll-y="true" bindscroll="scroll" style="width: 100%">
-    <view class="spin-article">
-    <view hidden='{{noQuery}}' class="tr bg-g">
-      <view class="td">{{msg}}</view>
-    </view>
-    <view class="tr bg-g" wx:for="{{queryList}}" wx:key="{{item.tariffId}}">
-      <view class='td'> {{item.cbm}} </view>
-      <view class="td"> {{item.ton}} </view>
-      <view class="td"> {{item.via}} </view>
-      <view class="td"> {{item.etd}} </view>
-      <view class="td"> {{item.tt}} </view>
-    </view>
+      <view class="table">
+          <view class="tr bg-w">
+            <view class="th">立方运价</view>
+            <view class="th">吨运价</view>
+            <view class="th">中转港</view>
+            <view class="th">船期</view>
+            <view class="th">航程</view>
+          </view>
+        <view class="spin-article">
+          <view hidden='{{noQuery}}' class="tr bg-g">
+            <view class="td">{{msg}}</view>
+          </view>
+          <view class="tr bg-g" wx:for="{{queryList}}" wx:key="{{item.tariffId}}">
+            <view class='td'> {{item.cbm}} </view>
+            <view class="td"> {{item.ton}} </view>
+            <view class="td"> {{item.via}} </view>
+            <view class="td"> {{item.etd}} </view>
+            <view class="td"> {{item.tt}} </view>
+          </view>
     <i-spin size="large" fix wx:if="{{loading}}"></i-spin>
+        </view>
     </view>
-    </scroll-view>
-  </view>
 </view>
