@@ -1,4 +1,6 @@
-<view class="page-body">
+<view class='page-body title'>查询时间段</view>
+<view class="page-body searchTime">
+<view class="page-section">
   <form bindsubmit="onSearch">
   <view class="weui-cell weui-cell_input">
     <view class="weui-cell__hd">
@@ -20,9 +22,12 @@
       </picker>
     </view>
   </view>
-  <button class='weui-button' formType="submit" type="primary" style="color: #FFFFFF;background-color: #0099FF;border-color: #0099FF;">查询</button>
+  <button class='weui-button nowrap' formType="submit" type="primary" style="color: #FFFFFF;background-color: #0099FF;border-color: #0099FF;">查询</button>
   <button class='weui-button' bindtap='removeTime' type="primary" style="color: #FFFFFF;background-color: #0099FF;border-color: #0099FF;">清空</button>
   </form>
+  </view>
+</view>
+  <view class="page-body">
       <view class="table">
           <view class="tr bg-w">
             <view class="th">立方运价</view>

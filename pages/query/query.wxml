@@ -1,7 +1,9 @@
-<!--pages/query/query.wxml-->
+<!--pages/query/query.wxml--> 
 <view class="page-body">
   <image class="image" src="../../image/logo.png"/>
-  <image class="image" src="../../image/ship.png"/>
+</view>
+<view class='page-body title'>运价查询</view>
+<view class="page-body">
   <form bindsubmit="onSearch">
   <view class="page-section">
     <input class="weui-input" name='pol' placeholder="起运港"/>

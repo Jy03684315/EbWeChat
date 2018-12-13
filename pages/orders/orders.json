@@ -8,6 +8,8 @@
     "i-grid": "../../dist/grid/index",
     "i-grid-item": "../../dist/grid-item/index",
     "i-icon": "../../dist/icon/index",
-    "i-switch": "../../dist/switch/index"
+    "i-switch": "../../dist/switch/index",
+    "i-collapse": "../../dist/collapse/index",
+    "i-collapse-item": "../../dist/collapse-item/index"
   }
 }

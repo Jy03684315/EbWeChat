@@ -187,11 +187,6 @@ Page({
                   content: '解除失败！',
                   type: 'error'
                 });
-                that.setData(
-                  {
-                    msgUnbind: res.errMsg
-                  }
-                )
               }else{
                 $Message({
                   content: '解除成功！',

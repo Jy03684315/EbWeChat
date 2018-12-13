@@ -1,6 +1,5 @@
+<view class='page-body title'>查询订单</view>
 <view class="page-body">
-  <image class="image" src="../../image/logo.png"/>
-  <image class="image" src="../../image/ship.png"/>
   <view class="page-section">
     <form bindsubmit="onSearch">
       <view class="page-section">
@@ -9,6 +8,46 @@
       <button class='weui-button' formType="submit" type="primary" style="color: #FFFFFF;background-color: #0099FF;border-color: #0099FF;">查询</button>
     </form>
   </view>
+</view>
+<view class='page-body title'>历史订舱</view>
+<view class="page-body list">
+  <view class="caption-wrap">
+      <i-collapse name="" accordion>
+      <view wx:for="{{queryList}}" wx:key="{{item.orderNo}}" data-name='{{item.orderNo}}'>
+          <i-collapse-item title="订单号:{{item.orderNo}}" name="{{item.orderNo}}"
+                i-class-title="collapse-item-title"
+                i-class-content="collapse-item-content">
+              <view slot="content">
+                  <view>
+                    <span style='color:#0099FF'>船期：</span>{{item.voyageNo}}
+                  </view>
+                  <view>
+                    <span style='color:#0099FF'>起运港：</span>{{item.polName}}
+                  </view>
+                  <view>
+                    <span style='color:#0099FF'>目的港：</span>{{item.podName}}
+                  </view>
+                  <view>
+                    <span style='color:#0099FF'>最新动态：</span>{{item.status}}
+                  </view>
+                  <form bindsubmit="orderDetail">
+                  <input hidden='true' class="weui-input" name='orderNo' value='{{item.orderNo}}'/>
+                  <span style='color:#0099FF'>订单环节：</span>
+                  <button class='searchButton' formType="submit" plain style="color: #FFFFFF;background-color: #0099FF;border-color: #0099FF;">查看</button>
+                  </form>
+              </view>
+          </i-collapse-item>
+      </view>
+      </i-collapse>
+  </view>
+</view>
+<view class="spin-article" wx:if="{{loading}}">
+  <i-spin size="large" fix wx:if="{{loading}}"></i-spin>
+</view>
+<view hidden='{{noQuery}}' class="tr bg-g">
+    <view>{{msg}}</view>
+  </view>
+<!-- <view class="page-body list">
 <view class="table">
   <view class="tr bg-w">
     <view class="th">订单号</view>
@@ -33,4 +72,4 @@
   </view>
   </scroll-view>
 </view>
-</view>
+</view> -->

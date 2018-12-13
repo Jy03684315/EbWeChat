@@ -1,15 +1,36 @@
 /* pages/orders/orders.wxss */
 .image {
-  margin-top: 10rpx;
-  width: 740rpx;
-  height: 150rpx;
+  margin: 50rpx 0 50rpx 0;
+  width: 100%;
+  height: 130rpx;
+}
+.page-body{
+  margin: 20rpx 10rpx 0 10rpx;
+  background: #fff;
+  border-radius: 6rpx;
+  padding:20rpx 20rpx 20rpx 20rpx;
+  margin-top:50rpx;
+  position:relative;
+  box-shadow:0 5px 5px rgba(0,0,0,.2);
+}
+.list{
+  padding:0 0 0 0;
+}
+.title{
+  background:#0099FF;
+  text-align: center;
+  color: #FFFFFF;
+  line-height:20px;
+  margin-bottom: -50rpx;
+  height: 50rpx;
+  font-size: 30rpx;
 }
 .weui-input {
   width: 100%;
   height: 2.58823529em;
   min-height: 2.58823529em;
   line-height: 2.58823529em;
-  border: 1rpx solid #D9D9D9;
+  border-bottom: 1rpx solid #D9D9D9;
 }
 .weui-cells {
   position: relative;
@@ -29,45 +50,27 @@
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
-          align-items: center;
+  align-items: center;
 }
 .weui-cell_input {
   padding-top: 0;
   padding-bottom: 0;
 }
 .page-section{
-  margin-bottom: 20rpx;
+  margin: 30rpx 0 30rpx 0;
 }
 .weui-button{
-  margin: 10rpx 0 10rpx 80rpx;
+  margin: auto;
+  margin-top: 50rpx;
+  margin-bottom: 50rpx;
   color: #FFFFFF;
   background-color: #0099FF;
   border-color: #0099FF;
-  width:600rpx;
-  height:110rpx;
+  width:500rpx;
+  height:80rpx;
   border-radius: 30px;
-  font-size:36rpx;
-  line-height:50px;
-}
-.table {
-  border: 0px solid darkgray;
-  /* table-layout:fixed; */
-}
-.tr {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  height: 3rem;
-  align-items: center;
-}
-.td {
-    width:40%;
-    height: 100%;
-    justify-content: center;
-    text-align: center;
-    word-wrap:break-word;
-    overflow: hidden;
-    text-overflow:ellipsis;
+  font-size:30rpx;
+  line-height:40px;
 }
 .bg-w{
   background: snow;
@@ -75,20 +78,32 @@
 .bg-g{
   background: #E6F3F9;
 }
-.th {
-  width: 40%;
-  justify-content: center;
-  background: #3366FF;
-  color: #fff;
-  display: flex;
-  height: 3rem;
-  align-items: center;
-}
 .spin-article{
     width: 100%;
-    height: 300px;
+    height: 200px;
+    padding: 10px;
     position: relative;
-    border: 0px solid #eee;
+    border: 1px solid #eee;
     text-align: center;
     box-sizing: border-box;
+}
+.caption-wrap{
+  margin-bottom: 30px;
+}
+.caption-title{
+  font-weight: bold;
+  padding:20px 10px;
+}
+.collapse-item-title{
+  font-size: 14px;
+  color: #737373;
+  font-weight: bold;
+}
+.collapse-item-content{
+  font-size: 16px;
+  color: #444444;
+}
+.searchButton{
+  display:inline;
+  font-size:30rpx;
 }

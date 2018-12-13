@@ -190,7 +190,7 @@ Page({
   },
 
   orderDetail:function(e){
-    var orderNo = e.currentTarget.dataset.name;
+    var orderNo = e.detail.value.orderNo;
     wx.navigateTo({
       url: '../orderDetail/orderDetail?orderNo='+orderNo
     })

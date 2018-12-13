@@ -1,5 +1,6 @@
 // pages/orderDetail/orderDetail.js
-const app = getApp()
+const app = getApp();
+var time = require('../../utils/util.js');
 Page({
 
   /**
@@ -52,6 +53,11 @@ Page({
             if (!queryList[i].createDt) {
               current = i - 1;
               break;
+            }
+          }
+          for (var i = 0; i < queryList.length; i++) {
+            if (queryList[i].upldateDt) {
+              queryList[i].upldateDt = time.formatTime(queryList[i].upldateDt);
             }
           }
           that.setData(

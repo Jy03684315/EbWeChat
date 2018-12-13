@@ -5,6 +5,7 @@
     "i-steps": "../../dist/steps/index",
     "i-step": "../../dist/step/index",
     "i-button": "../../dist/button/index",
-    "i-panel": "../../dist/panel/index"
+    "i-panel": "../../dist/panel/index",
+    "i-divider": "../../dist/divider/index"
   }
 }
